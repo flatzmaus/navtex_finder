@@ -1,0 +1,202 @@
+main.elf  :
+section                      size       addr
+.text                       0x2f8        0x0
+.data                         0x0   0x800060
+.bss                          0xf   0x800060
+.fuse                         0x2   0x820000
+.comment                     0x30        0x0
+.note.gnu.avr.deviceinfo     0x3c        0x0
+.debug_aranges               0x68        0x0
+.debug_info                 0x549        0x0
+.debug_abbrev               0x269        0x0
+.debug_line                 0x21c        0x0
+.debug_frame                0x188        0x0
+.debug_str                  0x1d4        0x0
+.debug_loc                  0x164        0x0
+.debug_ranges                0x18        0x0
+Total                      0x1283
+
+
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           Atmel AVR 8-bit microcontroller
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          7696 (bytes into file)
+  Flags:                             0x85
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         4
+  Size of section headers:           40 (bytes)
+  Number of section headers:         18
+  Section header string table index: 15
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .text             PROGBITS        00000000 0000b4 0002f8 00  AX  0   0  2
+  [ 2] .data             PROGBITS        00800060 0003ac 000000 00  WA  0   0  1
+  [ 3] .bss              NOBITS          00800060 0003ac 00000f 00  WA  0   0  1
+  [ 4] .fuse             PROGBITS        00820000 0003ac 000002 00  WA  0   0  1
+  [ 5] .comment          PROGBITS        00000000 0003ae 000030 01  MS  0   0  1
+  [ 6] .note.gnu.avr.deviceinfo NOTE            00000000 0003e0 00003c 00      0   0  4
+  [ 7] .debug_aranges    PROGBITS        00000000 00041c 000068 00      0   0  1
+  [ 8] .debug_info       PROGBITS        00000000 000484 000549 00      0   0  1
+  [ 9] .debug_abbrev     PROGBITS        00000000 0009cd 000269 00      0   0  1
+  [10] .debug_line       PROGBITS        00000000 000c36 00021c 00      0   0  1
+  [11] .debug_frame      PROGBITS        00000000 000e54 000188 00      0   0  4
+  [12] .debug_str        PROGBITS        00000000 000fdc 0001d4 01  MS  0   0  1
+  [13] .debug_loc        PROGBITS        00000000 0011b0 000164 00      0   0  1
+  [14] .debug_ranges     PROGBITS        00000000 001314 000018 00      0   0  1
+  [15] .shstrtab         STRTAB          00000000 00132c 0000ba 00      0   0  1
+  [16] .symtab           SYMTAB          00000000 0013e8 0006b0 10     17  38  4
+  [17] .strtab           STRTAB          00000000 001a98 000375 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings)
+  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+  O (extra OS processing required) o (OS specific), p (processor specific)
+
+There are no section groups in this file.
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  LOAD           0x0000b4 0x00000000 0x00000000 0x002f8 0x002f8 R E 0x2
+  LOAD           0x0003ac 0x00800060 0x000002f8 0x00000 0x00000 RW  0x1
+  LOAD           0x0003ac 0x00800060 0x00800060 0x00000 0x0000f RW  0x1
+  LOAD           0x0003ac 0x00820000 0x00820000 0x00002 0x00002 RW  0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .text 
+   01     .data 
+   02     .data .bss 
+   03     .fuse 
+
+There is no dynamic section in this file.
+
+There are no relocations in this file.
+
+The decoding of unwind sections for machine type Atmel AVR 8-bit microcontroller is not currently supported.
+
+Symbol table '.symtab' contains 107 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 SECTION LOCAL  DEFAULT    1 
+     2: 00800060     0 SECTION LOCAL  DEFAULT    2 
+     3: 00800060     0 SECTION LOCAL  DEFAULT    3 
+     4: 00820000     0 SECTION LOCAL  DEFAULT    4 
+     5: 00000000     0 SECTION LOCAL  DEFAULT    5 
+     6: 00000000     0 SECTION LOCAL  DEFAULT    6 
+     7: 00000000     0 SECTION LOCAL  DEFAULT    7 
+     8: 00000000     0 SECTION LOCAL  DEFAULT    8 
+     9: 00000000     0 SECTION LOCAL  DEFAULT    9 
+    10: 00000000     0 SECTION LOCAL  DEFAULT   10 
+    11: 00000000     0 SECTION LOCAL  DEFAULT   11 
+    12: 00000000     0 SECTION LOCAL  DEFAULT   12 
+    13: 00000000     0 SECTION LOCAL  DEFAULT   13 
+    14: 00000000     0 SECTION LOCAL  DEFAULT   14 
+    15: 00000000     0 FILE    LOCAL  DEFAULT  ABS _clear_bss.o
+    16: 0000006a     0 NOTYPE  LOCAL  DEFAULT    1 .do_clear_bss_start
+    17: 00000068     0 NOTYPE  LOCAL  DEFAULT    1 .do_clear_bss_loop
+    18: 00000000     0 FILE    LOCAL  DEFAULT  ABS main.c
+    19: 0000003e     0 NOTYPE  LOCAL  DEFAULT  ABS __SP_H__
+    20: 0000003d     0 NOTYPE  LOCAL  DEFAULT  ABS __SP_L__
+    21: 0000003f     0 NOTYPE  LOCAL  DEFAULT  ABS __SREG__
+    22: 00000000     0 NOTYPE  LOCAL  DEFAULT  ABS __tmp_reg__
+    23: 00000001     0 NOTYPE  LOCAL  DEFAULT  ABS __zero_reg__
+    24: 00000000     0 FILE    LOCAL  DEFAULT  ABS system.c
+    25: 0000003e     0 NOTYPE  LOCAL  DEFAULT  ABS __SP_H__
+    26: 0000003d     0 NOTYPE  LOCAL  DEFAULT  ABS __SP_L__
+    27: 0000003f     0 NOTYPE  LOCAL  DEFAULT  ABS __SREG__
+    28: 00000000     0 NOTYPE  LOCAL  DEFAULT  ABS __tmp_reg__
+    29: 00000001     0 NOTYPE  LOCAL  DEFAULT  ABS __zero_reg__
+    30: 00000000     0 FILE    LOCAL  DEFAULT  ABS appl.c
+    31: 0000003e     0 NOTYPE  LOCAL  DEFAULT  ABS __SP_H__
+    32: 0000003d     0 NOTYPE  LOCAL  DEFAULT  ABS __SP_L__
+    33: 0000003f     0 NOTYPE  LOCAL  DEFAULT  ABS __SREG__
+    34: 00000000     0 NOTYPE  LOCAL  DEFAULT  ABS __tmp_reg__
+    35: 00000001     0 NOTYPE  LOCAL  DEFAULT  ABS __zero_reg__
+    36: 00000000     0 FILE    LOCAL  DEFAULT  ABS _exit.o
+    37: 000002f6     0 NOTYPE  LOCAL  DEFAULT    1 __stop_program
+    38: 00800069     1 OBJECT  GLOBAL DEFAULT    3 fstate
+    39: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_1
+    40: 000001cc     2 FUNC    GLOBAL DEFAULT    1 APPL_Main
+    41: 00800064     1 OBJECT  GLOBAL DEFAULT    3 SYS_1ms_Lock
+    42: 00800065     1 OBJECT  GLOBAL DEFAULT    3 SYS_s_cnt
+    43: 000001e6   156 FUNC    GLOBAL DEFAULT    1 APPL_100ms
+    44: 00000054     0 NOTYPE  GLOBAL DEFAULT    1 __trampolines_start
+    45: 000002f8     0 NOTYPE  GLOBAL DEFAULT    1 _etext
+    46: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_12
+    47: 00000078     0 NOTYPE  GLOBAL DEFAULT    1 __bad_interrupt
+    48: 00800066     1 OBJECT  GLOBAL DEFAULT    3 SYS_100ms_cnt
+    49: 000002f8     0 NOTYPE  GLOBAL DEFAULT  ABS __data_load_end
+    50: 0000008a    30 FUNC    GLOBAL DEFAULT    1 SYS_init
+    51: 0000017c    80 FUNC    GLOBAL DEFAULT    1 APPL_Start
+    52: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_6
+    53: 00000054     0 NOTYPE  GLOBAL DEFAULT    1 __trampolines_end
+    54: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_3
+    55: 000002f8     0 NOTYPE  GLOBAL DEFAULT  ABS __data_load_start
+    56: 00000054     0 NOTYPE  GLOBAL DEFAULT    1 __dtors_end
+    57: 0080006f     0 NOTYPE  GLOBAL DEFAULT    3 __bss_end
+    58: 0080006a     1 OBJECT  GLOBAL DEFAULT    3 cycs
+    59: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_11
+    60: 00000054     0 NOTYPE  WEAK   DEFAULT    1 __init
+    61: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_13
+    62: 0000017a     2 FUNC    GLOBAL DEFAULT    1 APPL_Init
+    63: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_17
+    64: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_19
+    65: 00800067     1 OBJECT  GLOBAL DEFAULT    3 SYS_ms_cnt
+    66: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_7
+    67: 00000088     2 FUNC    GLOBAL DEFAULT    1 MAIN_fast
+    68: 00000060    16 NOTYPE  GLOBAL HIDDEN     1 __do_clear_bss
+    69: 00810000     0 NOTYPE  GLOBAL DEFAULT    3 __eeprom_end
+    70: 0080006b     1 OBJECT  GLOBAL DEFAULT    3 interr
+    71: 00000000     0 NOTYPE  GLOBAL DEFAULT    1 __vectors
+    72: 00000000     0 NOTYPE  WEAK   DEFAULT    1 __vector_default
+    73: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_5
+    74: 00000054     0 NOTYPE  GLOBAL DEFAULT    1 __ctors_start
+    75: 00800060     0 NOTYPE  GLOBAL DEFAULT    3 __bss_start
+    76: 000002de    22 FUNC    GLOBAL DEFAULT    1 main
+    77: 0000007c     4 FUNC    GLOBAL DEFAULT    1 MAIN_1s
+    78: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_4
+    79: 0080006c     1 OBJECT  GLOBAL DEFAULT    3 diffl
+    80: 00000000     0 NOTYPE  WEAK   DEFAULT  ABS __heap_end
+    81: 00000284    90 FUNC    GLOBAL DEFAULT    1 __vector_9
+    82: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_2
+    83: 000000a8    42 FUNC    GLOBAL DEFAULT    1 SYS_start
+    84: 00800068     1 OBJECT  GLOBAL DEFAULT    3 SYS_Fast_Lock
+    85: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_15
+    86: 00000054     0 NOTYPE  GLOBAL DEFAULT    1 __dtors_start
+    87: 00000054     0 NOTYPE  GLOBAL DEFAULT    1 __ctors_end
+    88: 0000085f     0 NOTYPE  WEAK   DEFAULT  ABS __stack
+    89: 00000282     2 FUNC    GLOBAL DEFAULT    1 APPL_1s
+    90: 00800060     0 NOTYPE  GLOBAL DEFAULT    2 _edata
+    91: 0080006f     0 NOTYPE  GLOBAL DEFAULT    3 _end
+    92: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_8
+    93: 00820000     2 OBJECT  GLOBAL DEFAULT    4 __fuse
+    94: 000002f4     0 NOTYPE  WEAK   HIDDEN     1 exit
+    95: 0080006d     1 OBJECT  GLOBAL DEFAULT    3 diffs
+    96: 000001ce    24 FUNC    GLOBAL DEFAULT    1 APPL_1ms
+    97: 000002f4     0 NOTYPE  GLOBAL HIDDEN     1 _exit
+    98: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_14
+    99: 00000080     4 FUNC    GLOBAL DEFAULT    1 MAIN_100ms
+   100: 000000d2   168 FUNC    GLOBAL DEFAULT    1 __vector_10
+   101: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_16
+   102: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_18
+   103: 0080006e     1 OBJECT  GLOBAL DEFAULT    3 cycl
+   104: 00000084     4 FUNC    GLOBAL DEFAULT    1 MAIN_1ms
+   105: 00000078     0 NOTYPE  WEAK   DEFAULT    1 __vector_20
+   106: 00800060     4 OBJECT  GLOBAL DEFAULT    3 ttt
+
+No version information found in this file.
+
+Displaying notes found at file offset 0x000003e0 with length 0x0000003c:
+  Owner                 Data size	Description
+  AVR                  0x0000002b	NT_VERSION (version)

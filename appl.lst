@@ -1,0 +1,315 @@
+
+appl.o:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000164  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  1 .data         00000000  00000000  00000000  00000198  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  00000198  2**0
+                  ALLOC
+  3 .debug_info   000001db  00000000  00000000  00000198  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  4 .debug_abbrev 000000ae  00000000  00000000  00000373  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_loc    00000099  00000000  00000000  00000421  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_aranges 00000020  00000000  00000000  000004ba  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  7 .debug_line   000000b3  00000000  00000000  000004da  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  8 .debug_str    0000015b  00000000  00000000  0000058d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .comment      00000031  00000000  00000000  000006e8  2**0
+                  CONTENTS, READONLY
+ 10 .debug_frame  00000098  00000000  00000000  0000071c  2**2
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <APPL_Init>:
+*
+****************************************************************************/
+
+
+void APPL_Init( void )
+{
+   0:	08 95       	ret
+
+00000002 <APPL_Start>:
+}
+
+
+void APPL_Start(void)
+{
+  interr = 0;
+   2:	10 92 00 00 	sts	0x0000, r1
+  // configure  Timer1 for Fast PWM, period set to ICR1 
+  // do PWM with OC1A
+  TCCR1A = 0xf2;            // 0010 0000;
+   6:	82 ef       	ldi	r24, 0xF2	; 242
+   8:	8f bd       	out	0x2f, r24	; 47
+  TCCR1B = 0x19;            // 0001 1001;
+   a:	89 e1       	ldi	r24, 0x19	; 25
+   c:	8e bd       	out	0x2e, r24	; 46
+  ICR1   = CYC1;            // period
+   e:	8b e6       	ldi	r24, 0x6B	; 107
+  10:	90 e0       	ldi	r25, 0x00	; 0
+  12:	97 bd       	out	0x27, r25	; 39
+  14:	86 bd       	out	0x26, r24	; 38
+  OCR1A  = ICR1 / 2;
+  16:	86 b5       	in	r24, 0x26	; 38
+  18:	97 b5       	in	r25, 0x27	; 39
+  1a:	96 95       	lsr	r25
+  1c:	87 95       	ror	r24
+  1e:	9b bd       	out	0x2b, r25	; 43
+  20:	8a bd       	out	0x2a, r24	; 42
+  OCR1B  = ICR1 / 2;
+  22:	86 b5       	in	r24, 0x26	; 38
+  24:	97 b5       	in	r25, 0x27	; 39
+  26:	96 95       	lsr	r25
+  28:	87 95       	ror	r24
+  2a:	99 bd       	out	0x29, r25	; 41
+  2c:	88 bd       	out	0x28, r24	; 40
+  TCNT1  = 0;
+  2e:	1d bc       	out	0x2d, r1	; 45
+  30:	1c bc       	out	0x2c, r1	; 44
+  TIMSK |= 0x04;
+  32:	89 b7       	in	r24, 0x39	; 57
+  34:	84 60       	ori	r24, 0x04	; 4
+  36:	89 bf       	out	0x39, r24	; 57
+  cycs = CYC1;
+  38:	8b e6       	ldi	r24, 0x6B	; 107
+  3a:	80 93 00 00 	sts	0x0000, r24
+  cycl = cycs + 1;
+  3e:	8c e6       	ldi	r24, 0x6C	; 108
+  40:	80 93 00 00 	sts	0x0000, r24
+  diffs = DIFF1S;
+  44:	8f e4       	ldi	r24, 0x4F	; 79
+  46:	80 93 00 00 	sts	0x0000, r24
+  diffl = DIFF1L;
+  4a:	8f ec       	ldi	r24, 0xCF	; 207
+  4c:	80 93 00 00 	sts	0x0000, r24
+  50:	08 95       	ret
+
+00000052 <APPL_Main>:
+}
+
+
+void APPL_Main(void)
+{
+  52:	08 95       	ret
+
+00000054 <APPL_1ms>:
+  // calculate 50% duty cycle 
+  //
+  // as the generated frequencies dont vary so much, this is not really necessary, 
+  // but its nice do do it correct
+  //
+  t16 = ICR1;
+  54:	86 b5       	in	r24, 0x26	; 38
+  56:	97 b5       	in	r25, 0x27	; 39
+  t16 = t16 + 1;
+  58:	01 96       	adiw	r24, 0x01	; 1
+  t16 = t16 / 2;
+  5a:	96 95       	lsr	r25
+  5c:	87 95       	ror	r24
+  t8  = t16-1;
+  5e:	81 50       	subi	r24, 0x01	; 1
+  
+  OCR1A  = t8;
+  60:	90 e0       	ldi	r25, 0x00	; 0
+  62:	9b bd       	out	0x2b, r25	; 43
+  64:	8a bd       	out	0x2a, r24	; 42
+  OCR1B  = t8;
+  66:	99 bd       	out	0x29, r25	; 41
+  68:	88 bd       	out	0x28, r24	; 40
+  6a:	08 95       	ret
+
+0000006c <APPL_100ms>:
+}
+
+void APPL_100ms(void)
+{
+  // change each 100ms the target frequency
+  switch (fstate)
+  6c:	80 91 00 00 	lds	r24, 0x0000
+  70:	82 30       	cpi	r24, 0x02	; 2
+  72:	01 f0       	breq	.+0      	; 0x74 <APPL_100ms+0x8>
+  74:	83 30       	cpi	r24, 0x03	; 3
+  76:	01 f0       	breq	.+0      	; 0x78 <APPL_100ms+0xc>
+  78:	81 30       	cpi	r24, 0x01	; 1
+  7a:	01 f0       	breq	.+0      	; 0x7c <APPL_100ms+0x10>
+  7c:	00 c0       	rjmp	.+0      	; 0x7e <APPL_100ms+0x12>
+  {
+    case 1: 
+      {
+        fstate = 2;
+  7e:	82 e0       	ldi	r24, 0x02	; 2
+  80:	80 93 00 00 	sts	0x0000, r24
+          ICR1 = CYC1;
+  84:	8b e6       	ldi	r24, 0x6B	; 107
+  86:	90 e0       	ldi	r25, 0x00	; 0
+  88:	97 bd       	out	0x27, r25	; 39
+  8a:	86 bd       	out	0x26, r24	; 38
+          TCNT1  = 0;
+  8c:	1d bc       	out	0x2d, r1	; 45
+  8e:	1c bc       	out	0x2c, r1	; 44
+          cycs = CYC1;
+  90:	80 93 00 00 	sts	0x0000, r24
+          cycl = CYC1 + 1;
+  94:	8c e6       	ldi	r24, 0x6C	; 108
+  96:	80 93 00 00 	sts	0x0000, r24
+          diffs = DIFF1S;
+  9a:	8f e4       	ldi	r24, 0x4F	; 79
+  9c:	80 93 00 00 	sts	0x0000, r24
+          diffl = DIFF1L;
+  a0:	8f ec       	ldi	r24, 0xCF	; 207
+  a2:	80 93 00 00 	sts	0x0000, r24
+	  PORTLED |= PINLED;
+  a6:	93 9a       	sbi	0x12, 3	; 18
+      }
+      break;
+  a8:	08 95       	ret
+
+    case 2: 
+      {
+        fstate = 3;
+  aa:	83 e0       	ldi	r24, 0x03	; 3
+  ac:	80 93 00 00 	sts	0x0000, r24
+          ICR1 = CYC2;
+  b0:	80 e6       	ldi	r24, 0x60	; 96
+  b2:	90 e0       	ldi	r25, 0x00	; 0
+  b4:	97 bd       	out	0x27, r25	; 39
+  b6:	86 bd       	out	0x26, r24	; 38
+          TCNT1  = 0;
+  b8:	1d bc       	out	0x2d, r1	; 45
+  ba:	1c bc       	out	0x2c, r1	; 44
+          cycs = CYC2;
+  bc:	80 93 00 00 	sts	0x0000, r24
+          cycl = CYC2 + 1;
+  c0:	81 e6       	ldi	r24, 0x61	; 97
+  c2:	80 93 00 00 	sts	0x0000, r24
+          diffs = DIFF2S;
+  c6:	8a e7       	ldi	r24, 0x7A	; 122
+  c8:	80 93 00 00 	sts	0x0000, r24
+          diffl = DIFF2L;
+  cc:	8a ef       	ldi	r24, 0xFA	; 250
+  ce:	80 93 00 00 	sts	0x0000, r24
+	  PORTLED &= ~PINLED;
+  d2:	93 98       	cbi	0x12, 3	; 18
+      }
+      break;
+  d4:	08 95       	ret
+
+    case 3: 
+      {
+        fstate = 1;
+  d6:	81 e0       	ldi	r24, 0x01	; 1
+  d8:	80 93 00 00 	sts	0x0000, r24
+          ICR1 = CYC3;
+  dc:	8b e5       	ldi	r24, 0x5B	; 91
+  de:	90 e0       	ldi	r25, 0x00	; 0
+  e0:	97 bd       	out	0x27, r25	; 39
+  e2:	86 bd       	out	0x26, r24	; 38
+          TCNT1  = 0;
+  e4:	1d bc       	out	0x2d, r1	; 45
+  e6:	1c bc       	out	0x2c, r1	; 44
+          cycs = CYC3;
+  e8:	80 93 00 00 	sts	0x0000, r24
+          cycl = CYC3 + 1;
+  ec:	8c e5       	ldi	r24, 0x5C	; 92
+  ee:	80 93 00 00 	sts	0x0000, r24
+          diffs = DIFF3S;
+  f2:	85 e5       	ldi	r24, 0x55	; 85
+  f4:	80 93 00 00 	sts	0x0000, r24
+          diffl = DIFF3L;
+  f8:	85 ed       	ldi	r24, 0xD5	; 213
+  fa:	80 93 00 00 	sts	0x0000, r24
+      }
+      break;
+  fe:	08 95       	ret
+
+    default: 
+      {
+        fstate = 1;
+ 100:	81 e0       	ldi	r24, 0x01	; 1
+ 102:	80 93 00 00 	sts	0x0000, r24
+ 106:	08 95       	ret
+
+00000108 <APPL_1s>:
+  }
+  
+}
+
+void APPL_1s(void)
+{
+ 108:	08 95       	ret
+
+0000010a <__vector_9>:
+
+// interrupt routine should be optimized for max. speed
+// max. 190kHz may be achieved
+#pragma GCC optimize ("O3")
+ISR(TIMER1_OVF_vect)
+{
+ 10a:	1f 92       	push	r1
+ 10c:	0f 92       	push	r0
+ 10e:	0f b6       	in	r0, 0x3f	; 63
+ 110:	0f 92       	push	r0
+ 112:	11 24       	eor	r1, r1
+ 114:	8f 93       	push	r24
+ 116:	9f 93       	push	r25
+  if(interr < 0)        // if error is negative
+ 118:	80 91 00 00 	lds	r24, 0x0000
+ 11c:	87 fd       	sbrc	r24, 7
+ 11e:	00 c0       	rjmp	.+0      	; 0x120 <__vector_9+0x16>
+    ICR1L = cycs;       // use short period
+    interr += diffs;
+  }
+  else
+  {
+    ICR1L = cycl;       // else use long period
+ 120:	80 91 00 00 	lds	r24, 0x0000
+ 124:	86 bd       	out	0x26, r24	; 38
+    interr += diffl;
+ 126:	90 91 00 00 	lds	r25, 0x0000
+ 12a:	80 91 00 00 	lds	r24, 0x0000
+ 12e:	89 0f       	add	r24, r25
+ 130:	80 93 00 00 	sts	0x0000, r24
+  }
+}
+ 134:	9f 91       	pop	r25
+ 136:	8f 91       	pop	r24
+ 138:	0f 90       	pop	r0
+ 13a:	0f be       	out	0x3f, r0	; 63
+ 13c:	0f 90       	pop	r0
+ 13e:	1f 90       	pop	r1
+ 140:	18 95       	reti
+#pragma GCC optimize ("O3")
+ISR(TIMER1_OVF_vect)
+{
+  if(interr < 0)        // if error is negative
+  {
+    ICR1L = cycs;       // use short period
+ 142:	80 91 00 00 	lds	r24, 0x0000
+ 146:	86 bd       	out	0x26, r24	; 38
+    interr += diffs;
+ 148:	90 91 00 00 	lds	r25, 0x0000
+ 14c:	80 91 00 00 	lds	r24, 0x0000
+ 150:	89 0f       	add	r24, r25
+ 152:	80 93 00 00 	sts	0x0000, r24
+  else
+  {
+    ICR1L = cycl;       // else use long period
+    interr += diffl;
+  }
+}
+ 156:	9f 91       	pop	r25
+ 158:	8f 91       	pop	r24
+ 15a:	0f 90       	pop	r0
+ 15c:	0f be       	out	0x3f, r0	; 63
+ 15e:	0f 90       	pop	r0
+ 160:	1f 90       	pop	r1
+ 162:	18 95       	reti

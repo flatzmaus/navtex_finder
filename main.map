@@ -1,0 +1,484 @@
+Archive member included to satisfy reference by file (symbol)
+
+d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                              d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o (exit)
+d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+fstate              0x1               appl.o
+SYS_1ms_Lock        0x1               system.o
+SYS_s_cnt           0x1               system.o
+SYS_100ms_cnt       0x1               system.o
+cycs                0x1               appl.o
+SYS_ms_cnt          0x1               system.o
+interr              0x1               appl.o
+diffl               0x1               appl.o
+SYS_Fast_Lock       0x1               system.o
+diffs               0x1               appl.o
+cycl                0x1               appl.o
+ttt                 0x4               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+user_signatures  0x00850000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+LOAD main.o
+LOAD system.o
+LOAD appl.o
+START GROUP
+LOAD d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a
+LOAD d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
+LOAD d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a
+LOAD d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libatmega32.a
+END GROUP
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x2f8
+ *(.vectors)
+ .vectors       0x00000000       0x54 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+                0x00000000                __vector_default
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x10 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000060                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000070        0x8 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+ *(.init9)
+ *(.text)
+ .text          0x00000078        0x4 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+                0x00000078                __vector_1
+                0x00000078                __vector_12
+                0x00000078                __bad_interrupt
+                0x00000078                __vector_6
+                0x00000078                __vector_3
+                0x00000078                __vector_11
+                0x00000078                __vector_13
+                0x00000078                __vector_17
+                0x00000078                __vector_19
+                0x00000078                __vector_7
+                0x00000078                __vector_5
+                0x00000078                __vector_4
+                0x00000078                __vector_2
+                0x00000078                __vector_15
+                0x00000078                __vector_8
+                0x00000078                __vector_14
+                0x00000078                __vector_16
+                0x00000078                __vector_18
+                0x00000078                __vector_20
+ .text          0x0000007c        0xe main.o
+                0x0000007c                MAIN_1s
+                0x00000080                MAIN_100ms
+                0x00000084                MAIN_1ms
+                0x00000088                MAIN_fast
+ .text          0x0000008a       0xf0 system.o
+                0x0000008a                SYS_init
+                0x000000a8                SYS_start
+                0x000000d2                __vector_10
+ .text          0x0000017a      0x164 appl.o
+                0x0000017a                APPL_Init
+                0x0000017c                APPL_Start
+                0x000001cc                APPL_Main
+                0x000001ce                APPL_1ms
+                0x000001e6                APPL_100ms
+                0x00000282                APPL_1s
+                0x00000284                __vector_9
+ .text          0x000002de        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text          0x000002de        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x000002de                . = ALIGN (0x2)
+ *(.text.*)
+ .text.startup  0x000002de       0x16 main.o
+                0x000002de                main
+ .text.libgcc.mul
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x000002f4                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000002f4        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x000002f4                _exit
+                0x000002f4                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000002f4        0x4 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000002f8                _etext = .
+
+.data           0x00800060        0x0 load address 0x000002f8
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+ .data          0x00800060        0x0 main.o
+ .data          0x00800060        0x0 system.o
+ .data          0x00800060        0x0 appl.o
+ .data          0x00800060        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800060                . = ALIGN (0x2)
+                0x00800060                _edata = .
+                0x00800060                PROVIDE (__data_end, .)
+
+.bss            0x00800060        0xf
+                0x00800060                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800060        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+ .bss           0x00800060        0x0 main.o
+ .bss           0x00800060        0x0 system.o
+ .bss           0x00800060        0x0 appl.o
+ .bss           0x00800060        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .bss           0x00800060        0x0 d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800060        0x4 main.o
+                0x00800060                ttt
+ COMMON         0x00800064        0x5 system.o
+                0x00800064                SYS_1ms_Lock
+                0x00800065                SYS_s_cnt
+                0x00800066                SYS_100ms_cnt
+                0x00800067                SYS_ms_cnt
+                0x00800068                SYS_Fast_Lock
+ COMMON         0x00800069        0x6 appl.o
+                0x00800069                fstate
+                0x0080006a                cycs
+                0x0080006b                interr
+                0x0080006c                diffl
+                0x0080006d                diffs
+                0x0080006e                cycl
+                0x0080006f                PROVIDE (__bss_end, .)
+                0x000002f8                __data_load_start = LOADADDR (.data)
+                0x000002f8                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0080006f        0x0
+                0x0080006f                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x0080006f                PROVIDE (__noinit_end, .)
+                0x0080006f                _end = .
+                0x0080006f                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse           0x00820000        0x2
+ *(.fuse)
+ .fuse          0x00820000        0x2 main.o
+                0x00820000                __fuse
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x30
+ *(.comment)
+ .comment       0x00000000       0x30 main.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000030       0x31 system.o
+ .comment       0x00000030       0x31 appl.o
+
+.note.gnu.avr.deviceinfo
+                0x00000000       0x3c
+ .note.gnu.avr.deviceinfo
+                0x00000000       0x3c d:/avr/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5/crtatmega32.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x68
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x28 main.o
+ .debug_aranges
+                0x00000028       0x20 system.o
+ .debug_aranges
+                0x00000048       0x20 appl.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000      0x549
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x1ee main.o
+ .debug_info    0x000001ee      0x180 system.o
+ .debug_info    0x0000036e      0x1db appl.o
+
+.debug_abbrev   0x00000000      0x269
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x118 main.o
+ .debug_abbrev  0x00000118       0xa3 system.o
+ .debug_abbrev  0x000001bb       0xae appl.o
+
+.debug_line     0x00000000      0x21c
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000       0xa8 main.o
+ .debug_line    0x000000a8       0xc1 system.o
+ .debug_line    0x00000169       0xb3 appl.o
+
+.debug_frame    0x00000000      0x188
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x64 main.o
+ .debug_frame   0x00000064       0x8c system.o
+ .debug_frame   0x000000f0       0x98 appl.o
+
+.debug_str      0x00000000      0x1d4
+ *(.debug_str)
+ .debug_str     0x00000000      0x13a main.o
+                                0x16e (size before relaxing)
+ .debug_str     0x0000013a       0x5b system.o
+                                0x16d (size before relaxing)
+ .debug_str     0x00000195       0x3f appl.o
+                                0x15b (size before relaxing)
+
+.debug_loc      0x00000000      0x164
+ *(.debug_loc)
+ .debug_loc     0x00000000       0xcb system.o
+ .debug_loc     0x000000cb       0x99 appl.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000       0x18
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x18 main.o
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(main.elf elf32-avr)
+LOAD linker stubs

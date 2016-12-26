@@ -1,0 +1,267 @@
+
+system.o:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000f0  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  1 .data         00000000  00000000  00000000  00000124  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  00000124  2**0
+                  ALLOC
+  3 .debug_info   00000180  00000000  00000000  00000124  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  4 .debug_abbrev 000000a3  00000000  00000000  000002a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_loc    000000cb  00000000  00000000  00000347  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_aranges 00000020  00000000  00000000  00000412  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  7 .debug_line   000000c1  00000000  00000000  00000432  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  8 .debug_str    0000016d  00000000  00000000  000004f3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .comment      00000031  00000000  00000000  00000660  2**0
+                  CONTENTS, READONLY
+ 10 .debug_frame  0000008c  00000000  00000000  00000694  2**2
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <SYS_init>:
+/*      mm-dd-yyyy                                                       */
+/*                                                                       */
+/*************************************************************************/
+void SYS_init(void)
+{
+  MCUCSR &= 0x80;     // set bit JTD: JTAG Interface Disable
+   0:	84 b7       	in	r24, 0x34	; 52
+   2:	80 78       	andi	r24, 0x80	; 128
+   4:	84 bf       	out	0x34, r24	; 52
+  /*************************************************************************/
+  /* Initialize Ports                                                      */
+  /*************************************************************************/
+  
+  // PORTA – The Port A Data Register
+  PORTA =   0x00;     //   0000 0000
+   6:	1b ba       	out	0x1b, r1	; 27
+                      //   ||+------ Bit  5:
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+  
+  // DDRA – The Port A Data Direction Register: 0 input  1 output
+  DDRA =   0x00;      //   0010 0010
+   8:	1a ba       	out	0x1a, r1	; 26
+                      //   ||+------ Bit  5:
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+
+  // PORTB – The Port B Data Register
+  PORTB =   0x00;     //   0000 0000
+   a:	18 ba       	out	0x18, r1	; 24
+                      //   ||+------ Bit  5:
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+  
+  // DDRB – The Port B Data Direction Register: 0 input  1 output
+  DDRB =   0x00;      //   0000 0000
+   c:	17 ba       	out	0x17, r1	; 23
+                      //   ||+------ Bit  5:
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+
+  // PORTC – The Port C Data Register
+  PORTC =   0x00;     //   0010 0000
+   e:	15 ba       	out	0x15, r1	; 21
+                      //   ||+------ Bit  5:
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+  
+  // DDRC – The Port C Data Direction Register: 0 input  1 output
+  DDRC  =   0x00;     //   0000 0000
+  10:	14 ba       	out	0x14, r1	; 20
+                      //   ||+------ Bit  5:
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+  
+  // PORTD – The Port D Data Register
+  PORTD =   0x00;     //   0000 0000
+  12:	12 ba       	out	0x12, r1	; 18
+                      //   ||+------ Bit  5:  outa
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+  
+  // DDRD – The Port D Data Direction Register: 0 input  1 output
+  DDRD  =   0x38;     //   0011 1000
+  14:	88 e3       	ldi	r24, 0x38	; 56
+  16:	81 bb       	out	0x11, r24	; 17
+                      //   |||| +--- Bit  3:  LED
+                      //   |||+----- Bit  4:  outb
+                      //   ||+------ Bit  5:  outa
+                      //   |+------- Bit  6:
+                      //   +-------- Bit  7:
+PORTD = 0xFF;
+  18:	8f ef       	ldi	r24, 0xFF	; 255
+  1a:	82 bb       	out	0x12, r24	; 18
+  1c:	08 95       	ret
+
+0000001e <SYS_start>:
+/*      mm-dd-yyyy                                                       */
+/*                                                                       */
+/*************************************************************************/
+void SYS_start(void)
+{
+  TCCR0  = 0x0a;        // Compare Match Output Mode
+  1e:	8a e0       	ldi	r24, 0x0A	; 10
+  20:	83 bf       	out	0x33, r24	; 51
+  TCNT0  = 0x00;
+  22:	12 be       	out	0x32, r1	; 50
+  OCR0   = SYS_CPU_CLK / 8 / SYS_FAST_INT_FREQ - 1 ;
+  24:	87 ec       	ldi	r24, 0xC7	; 199
+  26:	8c bf       	out	0x3c, r24	; 60
+  TIFR   = 0x07;        // clear all flags
+  28:	87 e0       	ldi	r24, 0x07	; 7
+  2a:	88 bf       	out	0x38, r24	; 56
+  TIMSK  = 0x02;        // enable Compare Match Interrupt
+  2c:	82 e0       	ldi	r24, 0x02	; 2
+  2e:	89 bf       	out	0x39, r24	; 57
+  TCNT0  = 0x00;
+  30:	12 be       	out	0x32, r1	; 50
+  
+  MCUCR  = 0x00;        // disable sleep modes
+  32:	15 be       	out	0x35, r1	; 53
+  
+  SYS_ms_cnt = 0;
+  34:	10 92 00 00 	sts	0x0000, r1
+  SYS_100ms_cnt = 0;
+  38:	10 92 00 00 	sts	0x0000, r1
+  SYS_s_cnt  = 0;
+  3c:	10 92 00 00 	sts	0x0000, r1
+  
+  SYS_Fast_Lock = 0;
+  40:	10 92 00 00 	sts	0x0000, r1
+  sei();
+  44:	78 94       	sei
+  46:	08 95       	ret
+
+00000048 <__vector_10>:
+/*        DATE          REMARKS                                          */
+/*      mm-dd-yyyy                                                       */
+/*                                                                       */
+/*************************************************************************/
+ISR(TIMER0_COMP_vect)
+{
+  48:	1f 92       	push	r1
+  4a:	0f 92       	push	r0
+  4c:	0f b6       	in	r0, 0x3f	; 63
+  4e:	0f 92       	push	r0
+  50:	11 24       	eor	r1, r1
+  52:	2f 93       	push	r18
+  54:	3f 93       	push	r19
+  56:	4f 93       	push	r20
+  58:	5f 93       	push	r21
+  5a:	6f 93       	push	r22
+  5c:	7f 93       	push	r23
+  5e:	8f 93       	push	r24
+  60:	9f 93       	push	r25
+  62:	af 93       	push	r26
+  64:	bf 93       	push	r27
+  66:	ef 93       	push	r30
+  68:	ff 93       	push	r31
+  if(!SYS_Fast_Lock)
+  6a:	80 91 00 00 	lds	r24, 0x0000
+  6e:	81 11       	cpse	r24, r1
+  70:	00 c0       	rjmp	.+0      	; 0x72 <__vector_10+0x2a>
+  {
+    SYS_Fast_Lock = 1;
+  72:	81 e0       	ldi	r24, 0x01	; 1
+  74:	80 93 00 00 	sts	0x0000, r24
+
+    sei();
+  78:	78 94       	sei
+    MAIN_fast();
+  7a:	0e 94 00 00 	call	0	; 0x0 <SYS_init>
+    cli();
+  7e:	f8 94       	cli
+    
+    if(SYS_ms_cnt<=0)
+  80:	80 91 00 00 	lds	r24, 0x0000
+  84:	18 16       	cp	r1, r24
+  86:	04 f0       	brlt	.+0      	; 0x88 <__vector_10+0x40>
+    {
+      sei();
+  88:	78 94       	sei
+      MAIN_1ms();
+  8a:	0e 94 00 00 	call	0	; 0x0 <SYS_init>
+      
+      if(SYS_100ms_cnt<=0)
+  8e:	80 91 00 00 	lds	r24, 0x0000
+  92:	18 16       	cp	r1, r24
+  94:	04 f0       	brlt	.+0      	; 0x96 <__vector_10+0x4e>
+      {
+        MAIN_100ms();
+  96:	0e 94 00 00 	call	0	; 0x0 <SYS_init>
+        SYS_100ms_cnt = 100-1;
+  9a:	83 e6       	ldi	r24, 0x63	; 99
+  9c:	80 93 00 00 	sts	0x0000, r24
+        if(SYS_s_cnt<=0)
+  a0:	80 91 00 00 	lds	r24, 0x0000
+  a4:	18 16       	cp	r1, r24
+  a6:	04 f0       	brlt	.+0      	; 0xa8 <__vector_10+0x60>
+        {
+          MAIN_1s();
+  a8:	0e 94 00 00 	call	0	; 0x0 <SYS_init>
+          SYS_s_cnt = 10-1;
+  ac:	89 e0       	ldi	r24, 0x09	; 9
+  ae:	00 c0       	rjmp	.+0      	; 0xb0 <__vector_10+0x68>
+        }
+        else
+        {
+          SYS_s_cnt--;
+  b0:	81 50       	subi	r24, 0x01	; 1
+  b2:	80 93 00 00 	sts	0x0000, r24
+  b6:	00 c0       	rjmp	.+0      	; 0xb8 <__vector_10+0x70>
+        }
+      }
+      else
+      {
+        SYS_100ms_cnt --;
+  b8:	81 50       	subi	r24, 0x01	; 1
+  ba:	80 93 00 00 	sts	0x0000, r24
+      }
+      
+      cli();
+  be:	f8 94       	cli
+      
+      SYS_ms_cnt = SYS_FAST_INT_FREQ / 1000 - 1;
+  c0:	89 e0       	ldi	r24, 0x09	; 9
+  c2:	00 c0       	rjmp	.+0      	; 0xc4 <__vector_10+0x7c>
+    }
+    else
+    {
+      SYS_ms_cnt--;
+  c4:	81 50       	subi	r24, 0x01	; 1
+  c6:	80 93 00 00 	sts	0x0000, r24
+    }
+    
+    SYS_Fast_Lock = 0;
+  ca:	10 92 00 00 	sts	0x0000, r1
+  }
+}
+  ce:	ff 91       	pop	r31
+  d0:	ef 91       	pop	r30
+  d2:	bf 91       	pop	r27
+  d4:	af 91       	pop	r26
+  d6:	9f 91       	pop	r25
+  d8:	8f 91       	pop	r24
+  da:	7f 91       	pop	r23
+  dc:	6f 91       	pop	r22
+  de:	5f 91       	pop	r21
+  e0:	4f 91       	pop	r20
+  e2:	3f 91       	pop	r19
+  e4:	2f 91       	pop	r18
+  e6:	0f 90       	pop	r0
+  e8:	0f be       	out	0x3f, r0	; 63
+  ea:	0f 90       	pop	r0
+  ec:	1f 90       	pop	r1
+  ee:	18 95       	reti
